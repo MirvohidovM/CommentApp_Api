@@ -1,0 +1,6 @@
+.idea/
+db.sqlite3
+commentApp/__pycache__/
+commentApp/migrations/
+config/__pycache__/
+
