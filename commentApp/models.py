@@ -26,7 +26,7 @@ class Comment(models.Model):
     parent = models.ForeignKey('Comment', on_delete=models.CASCADE, related_name='replies', blank=True, null=True)
 
     def __str__(self):
-        return self.author
+        return f'{self.author.username} ning kommentariyasi'
 
     class Meta:
         ordering = ('post',)
