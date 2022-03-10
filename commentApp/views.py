@@ -18,6 +18,28 @@ class CommentsViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
+class CommentCreateView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    # permissions.IsAuthenticated
+    def post(self, request):
+        serializer = CommentsSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status.HTTP_200_OK)
+        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+
+
+class CommentUpdateView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def put(self, request, pk, format=None):
+        comment = Comment.objects.get(pk=pk)
+        serializer = CommentsSerializer(comment, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class RegisterUserView(APIView):
     permission_classes = [AllowAny]
 
