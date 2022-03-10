@@ -1,5 +1,18 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser, PermissionsMixin
 from django.db import models
+
+# {
+# "username": "mirshohid",
+# "password": "2183707uyim",
+# "email": "mirshohid@gmail.com"
+# }
+# class User(AbstractUser, PermissionsMixin):
+#     email = models.EmailField()
+#     username = models.CharField(unique=True, max_length=25)
+#     password = models.CharField(max_length=200)
+#
+#     def __str__(self):
+#         return f'{self.username}'
 
 
 class Post(models.Model):
@@ -27,9 +40,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'{self.author.username} ning kommenti'
-        # if self.parent:
-        #     return f'{self.author.username}ning {self.parent.author.username} kommentariyasiga bildirgan fikri'
-        # return f'{self.author.username} ning "{self.post.title}" mavzusiga bildirgan fikri'
 
     class Meta:
         ordering = ('post',)
