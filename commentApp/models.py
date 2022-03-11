@@ -28,5 +28,3 @@ class Comment(models.Model):
     def __str__(self):
         return f'{self.author.username} ning kommenti'
 
-    class Meta:
-        ordering = ('post',)

@@ -6,5 +6,5 @@ urlpatterns = [
     path('comments/', CommentsViewSet.as_view({'get': 'list'}), name='comments'),
     path('register/', RegisterUserView.as_view(), name='register'),
     path('postcomment/', CommentCreateView.as_view(), name='postcomment' ),
-    path('putcomment/', CommentUpdateView.as_view(), name='putcomment')
+    path('putcomment/<int:pk>/', CommentUpdateView.as_view(), name='putcomment')
 ]

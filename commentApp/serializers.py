@@ -17,14 +17,14 @@ class CommentsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ['post', 'author', 'text', 'created_at', 'updated_at', 'reply']
+        fields = ['id', 'post', 'author', 'text', 'created_at', 'updated_at', 'reply']
 
     def get_reply(self, obj):
         if obj.parent:
             return f'{obj.author.username}ning {obj.parent.author.username} kommentariyasiga bildirgan fikri' \
-                   f'REPLY:{obj.text}'
+                   f'  REPLY: {obj.text}'
         return f'{obj.author.username} ning "{obj.post.title}" mavzusiga bildirgan fikri' \
-               f'COMMENT:{obj.text}'
+               f'  COMMENT: {obj.text}'
 
     def get_post(self, obj):
         return f'mavzu {obj.post}'
@@ -42,7 +42,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password')
+        fields = ('id', 'username', 'email', 'password')
         extra_kwargs = {
             'username': {'required': True},
             'email': {'required': True},
