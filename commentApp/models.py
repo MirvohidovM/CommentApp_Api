@@ -23,7 +23,7 @@ class Comment(models.Model):
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    parent = models.ForeignKey('Comment', on_delete=models.CASCADE, related_name='replies', blank=True, null=True)
+    parent = models.ForeignKey('Comment', on_delete=models.SET_NULL, related_name='replies', blank=True, null=True)
 
     def __str__(self):
         return f'{self.author.username} ning kommenti'

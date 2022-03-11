@@ -22,9 +22,9 @@ class CommentsSerializer(serializers.ModelSerializer):
     def get_reply(self, obj):
         if obj.parent:
             return f'{obj.author.username}ning {obj.parent.author.username} kommentariyasiga bildirgan fikri' \
-                   f'JAVOB:{obj.text}'
-        return f'{obj.author.username} ning "{obj.post.title}" mavzusiga bildirgan fikriga ' \
-               f'JAVOB:{obj.text}'
+                   f'REPLY:{obj.text}'
+        return f'{obj.author.username} ning "{obj.post.title}" mavzusiga bildirgan fikri' \
+               f'COMMENT:{obj.text}'
 
     def get_post(self, obj):
         return f'mavzu {obj.post}'

@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import PostsSerializer, CommentsSerializer, RegisterUserSerializer
 from .models import Post, Comment
-
+from .permissions import IsAuthorUser
 
 class PostsViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
@@ -30,7 +30,7 @@ class CommentCreateView(APIView):
 
 
 class CommentUpdateView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsAuthorUser]
 
     def put(self, request, pk, format=None):
         comment = Comment.objects.get(pk=pk)
